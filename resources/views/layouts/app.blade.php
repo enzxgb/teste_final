@@ -3,61 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield ('title', 'Sistema de Controle Acadêmico')</title>
+    <title>@yield ('title', 'Sabor do Brasil')</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     
 </head>
 <body>
         
     <main>
-        <div class="container">
-            <div>
-                <ul class="nav nav-tabs">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Aluno</a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ route('aluno.create') }}">Cadastrar</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('aluno.index') }}">Listagem</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Professor</a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ route('professor.create') }}">Cadastrar</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('professor.index') }}">Listagem</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Curso</a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ route('curso.create') }}">Cadastrar</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('curso.index') }}">Listagem</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Turma</a>
-                <div class="dropdown-menu"> 
-                <a class="dropdown-item" href="{{ route('turma.create') }}">Cadastrar</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('turma.index') }}">Listagem</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <form action="{{ route('logout') }}" method="post">
-                @csrf
-                    <button class="btn btn-danger" type="submit">Sair</button>
-                </form>
-            </li>
-            <li>
-                
-            </li class="nav-item"> 
-                </ul>
-            </div>
+        
             @yield('content')
-        </div>
+
     </main>
 
 
