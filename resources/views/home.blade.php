@@ -30,7 +30,7 @@
                 <div>
                     <p>Título do Prato 01</p>
                     @foreach ($publicacoes as $publicacao )
-                    <img src="{{ asset($publicacao->foto) }}" alt="">
+                    <img src="{{ asset($publicacao[0]->foto) }}" alt="">
                     @endforeach
                     <div>
                         <p>Local 01</p>
