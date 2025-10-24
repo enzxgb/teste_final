@@ -13,7 +13,7 @@
 
         <!-- COLUNA EMPRESA -->
             <div class="col-md-3 text-center py-4 mt-3">
-                <img src="{{ asset($empresa->logo) }}" alt="Sabor do Brasil">
+                <img class="rounded-circle img-fluid" src="{{ asset($empresa->logo) }}" alt="Sabor do Brasil">
                 <p class="h2 mt-4 ">{{ $empresa->nome }}</p>
                 <hr style="border-top: 3px solid #000; border-color: #D97014; width: 70%">
                 <div class="d-flex justify-content-center">
@@ -65,7 +65,7 @@
                         <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                            <h1 class="text-center">Login</h1>
+                            <h1 class="text-center" style="color: orange;">Login</h1>
                             <!-- Email Address -->
                             <div>
                                 <x-text-input id="email" placeholder="Digite seu e-mail" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
@@ -81,9 +81,9 @@
 
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
-                                <div>
+                                <div class="d-flex">
                                     <button id="botaoCancelar">Cancelar</button>
-                                    <x-primary-button>
+                                    <x-primary-button id="botaoLogin">
                                         {{ __('Entrar') }}
                                     </x-primary-button>
                                 </div>
