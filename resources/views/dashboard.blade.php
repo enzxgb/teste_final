@@ -13,8 +13,8 @@
 
         <!-- COLUNA EMPRESA -->
             <div class="col-md-3 text-center py-4 mt-3">
-                <img class="rounded-circle img-fluid" src="{{ asset(Auth::user()->foto) }}" alt="{{ asset(Auth::user()->nickname) }}">
-                <p class="h2 mt-4 ">{{ asset(Auth::user()->name) }}</p>
+                <img class="empresa_usuario rounded-circle img-fluid" src="{{ asset(Auth::user()->foto) }}" alt="{{ asset(Auth::user()->nickname) }}">
+                <p class="h2 mt-4 ">{{ Auth::user()->name }}</p>
                 <hr style="border-top: 3px solid #000; border-color: #D97014; width: 70%">
                 <div class="d-flex justify-content-center">
                     <p class="h5 mr-5">29<br>Quantidade <br> Likes</p>

@@ -13,8 +13,8 @@
 
         <!-- COLUNA EMPRESA -->
             <div class="col-md-3 text-center py-4 mt-3">
-                <img class="rounded-circle img-fluid" src="{{ asset($empresa->logo) }}" alt="Sabor do Brasil">
-                <p class="h2 mt-4 ">{{ $empresa->nome }}</p>
+                <img class="img-fluid" src="{{ asset($empresa->logo) }}" alt="Sabor do Brasil">
+                <p class="h2 mt-4">{{ $empresa->nome }}</p>
                 <hr style="border-top: 3px solid #000; border-color: #D97014; width: 70%">
                 <div class="d-flex justify-content-center">
                     <p class="h5 mr-5">29<br>Quantidade <br> Likes</p>
@@ -35,12 +35,12 @@
         <!-- PUBLICAÇÕES -->
                 @foreach ($publicacoes as $publicacao)
                 <div class="card p-3">
-                    <p class="h3">{{ $publicacao->titulo_prato }}</p>
+                    <p class="h3"><strong>{{ $publicacao->titulo_prato }}</strong></p>
                     <div class="text-center">
                         <img src="{{ asset($publicacao->foto) }}" alt="" class="img-fluid">
                     </div>
                     <div class="d-flex justify-content-between mt-2">
-                        <p class="h5 align-content-start" >{{ $publicacao->local }}</p>
+                        <p class="h5 align-content-start">{{ $publicacao->local }}</p>
                         <p class="h5 align-content-end">{{ $publicacao->cidade }}</p>
                     </div>
                     <div class="d-flex" >
@@ -81,7 +81,7 @@
 
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
-                                <div class="d-flex">
+                                <div class="botoesLogin d-flex">
                                     <button id="botaoCancelar">Cancelar</button>
                                     <x-primary-button id="botaoLogin">
                                         {{ __('Entrar') }}

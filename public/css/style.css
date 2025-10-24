@@ -15,7 +15,7 @@
 }
 
 #botaoLogin {
-    width: 50%;
+    width: 48%;
     background-color: orange;
     color: white;
     border: none;
@@ -23,7 +23,7 @@
 }
 
 #botaoCancelar {
-    width: 50%;
+    width: 48%;
     background-color: white;
     color: orange;
     border: 2px solid orange;
@@ -32,6 +32,10 @@
 
 #botaoCancelar, #botaoLogin {
     margin-top: 20px;
+}
+
+.botoesLogin {
+    justify-content: space-between;
 }
 
 dialog::backdrop {
@@ -46,9 +50,9 @@ dialog {
     width: 30%;
 }
 
-/* .empresa_usuario {
-    border: 1px solid ;
-    border-radius: 100px;
-    padding: 25px;
-} */
+.empresa_usuario {
+    width: 200px;
+    height: 200px;
+}
+
  
