@@ -1,4 +1,19 @@
-.border-laranja {
-  border-color: #d2691e;
-  border-width: 2px;
+#botaoEntrar {
+    padding: 10px 100px 10px 100px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+
+dialog::backdrop {
+    background-color: rgb(0 0 0/ .6);
+}
+
+dialog {
+    margin-top: 2%;
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0 0 1em rgb(0 0 0/ .3);
+    width: 30%;
 }
