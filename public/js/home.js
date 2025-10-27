@@ -11,5 +11,10 @@ botaoCancelar.addEventListener("click", function() {
     modalLogin.close()
 })
 
+// const botaoLike = document.getElementById('botaoLike');
+
+// botaoLike.addEventListener("click", function() {
+//     botaoLike.src = "{{ asset('flecha_cima_cheia.svg') }}"
+// })
 
 

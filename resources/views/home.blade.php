@@ -34,27 +34,41 @@
 
         <!-- PUBLICAÇÕES -->
                 @foreach ($publicacoes as $publicacao)
-                <div class="card p-3">
-                    <p class="h3"><strong>{{ $publicacao->titulo_prato }}</strong></p>
+                <div class="card p-3 mb-4 hover">
+                    <p class="h3">{{ $publicacao->titulo_prato }}</p>
                     <div class="text-center">
                         <img src="{{ asset($publicacao->foto) }}" alt="" class="img-fluid">
                     </div>
                     <div class="d-flex justify-content-between mt-2">
-                        <p class="h5 align-content-start">{{ $publicacao->local }}</p>
+                        <p class="h5 align-content-start" >{{ $publicacao->local }}</p>
                         <p class="h5 align-content-end">{{ $publicacao->cidade }}</p>
                     </div>
+                    @foreach ($publicacao->avaliacoes as $avaliacao)
                     <div class="d-flex" >
                         <img src="{{ asset('flecha_cima_vazia.svg') }}" alt="like">
-                        <p class="h3 mt-2 ml-2">1000</p>
+                        <p class="h3 mt-2 ml-2">{{ $avaliacao->like }}</p>
                         <img src="{{ asset('flecha_baixo_vazia.svg') }}" alt="dislike" class="ml-4">
-                        <p class="h3 mt-2 ml-2">1</p>
+                        <p class="h3 mt-2 ml-2">{{ $avaliacao->dislike }}</p>
                         <div class="d-flex img-fluid" style="margin-left: auto;">
                             <img src="{{ asset('chat.svg') }}" alt="chat" class="ml-4">
                             <p class="h3 mt-2 ml-2">4</p>
                         </div>
                     </div>
+                    @endforeach
                 </div>
                 @endforeach
+
+
+                    <!-- <div class="d-flex" >
+                        <img src="{{ asset('flecha_cima_vazia.svg') }}" alt="like">
+                        <p class="h3 mt-2 ml-2"></p>
+                        <img src="{{ asset('flecha_baixo_vazia.svg') }}" alt="dislike" class="ml-4">
+                        <p class="h3 mt-2 ml-2">1</p>
+                        <div class="d-flex img-fluid" style="margin-left: auto;">
+                            <img src="{{ asset('chat.svg') }}" alt="chat" class="ml-4">
+                            <p class="h3 mt-2 ml-2">4</p>
+                        </div> -->
+                    <!-- </div> -->
             </div>
 
         <!-- COLUNA DIREITA -->

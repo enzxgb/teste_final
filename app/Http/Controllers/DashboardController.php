@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Empresa;
 use App\Models\Publicacao;
+use App\Models\Avaliacao;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -14,8 +16,10 @@ class DashboardController extends Controller
     public function index()
     {
         $empresa = Empresa::find(1);
-        $publicacoes = Publicacao::all();
-        return view('dashboard', compact('empresa', 'publicacoes'));
+        $publicacoes = Publicacao::with('avaliacoes')->get();
+        $avaliacoes = Avaliacao::where('user_id', Auth::id())->get();
+
+        return view('dashboard', compact('empresa', 'publicacoes', 'avaliacoes'));
     }
 
     /**
