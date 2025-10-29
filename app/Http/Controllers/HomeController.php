@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Empresa;
 use App\Models\Publicacao;
 use App\Models\Avaliacao;
+use App\Models\Curtida;
+use App\Models\Descurtida;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -18,7 +20,9 @@ class HomeController extends Controller
         $empresa = Empresa::find(1);
         $publicacoes = Publicacao::with('avaliacoes')->get();
         $avaliacoes = Avaliacao::where('user_id', Auth::id())->get();
-        return view('home', compact('empresa', 'publicacoes', 'avaliacoes'));
+        $likesTotais = Curtida::sum('likes');
+        $dislikesTotais = Descurtida::sum('dislikes');
+        return view('home', compact('empresa', 'publicacoes', 'avaliacoes', 'likesTotais', 'dislikesTotais' ));
     }
 
     /**

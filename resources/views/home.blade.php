@@ -17,8 +17,8 @@
                 <p class="h2 mt-4">{{ $empresa->nome }}</p>
                 <hr style="border-top: 3px solid #000; border-color: #D97014; width: 70%">
                 <div class="d-flex justify-content-center">
-                    <p class="h5 mr-5">29<br>Quantidade <br> Likes</p>
-                    <p class="h5 ml-5">12<br>Quantidade<br>Dislikes</p>
+                    <p class="h5 mr-5">{{ $likesTotais }}<br>Quantidade <br> Likes</p>
+                    <p class="h5 ml-5">{{ $dislikesTotais }}<br>Quantidade<br>Dislikes</p>
                 </div>
             </div>
 
@@ -44,31 +44,52 @@
                         <p class="h5 align-content-end">{{ $publicacao->cidade }}</p>
                     </div>
                     @foreach ($publicacao->avaliacoes as $avaliacao)
+                    @php
+                        $liked = $publicacao->curtidas->where('user_id', auth()->id())->count() > 0;
+                        $disliked = $publicacao->descurtidas->where('user_id', auth()->id())->count() > 0;
+                    @endphp
                     <div class="d-flex" >
-                        <img src="{{ asset('flecha_cima_vazia.svg') }}" alt="like">
-                        <p class="h3 mt-2 ml-2">{{ $avaliacao->like }}</p>
-                        <img src="{{ asset('flecha_baixo_vazia.svg') }}" alt="dislike" class="ml-4">
-                        <p class="h3 mt-2 ml-2">{{ $avaliacao->dislike }}</p>
-                        <div class="d-flex img-fluid" style="margin-left: auto;">
+                         <form action="" method="GET">
+                        @csrf
+                            <button type="submit" class="btn border-0 bg-transparent botaoLike" id="botaoLike">
+                                <img src="{{ asset($liked ? '/flecha_cima_cheia.svg' : '/flecha_cima_vazia.svg') }}" alt="Like">
+                                {{ $publicacao->curtidas->count() }}
+                            </button>
+                        </form>
+
+                        <form action="" method="">
+                        @csrf
+                            <button type="submit" class="btn border-0 bg-transparent botaoDislike" id="botaoDislike">
+                                <img src="{{ asset($disliked ? '/flecha_baixo_cheia.svg' : '/flecha_baixo_vazia.svg') }}" alt="Dislike">
+                                {{ $publicacao->descurtidas->count() }}
+                            </button>
+                        </form>
+                        <!-- <div class="d-flex img-fluid" style="margin-left: auto;">
                             <img src="{{ asset('chat.svg') }}" alt="chat" class="ml-4">
                             <p class="h3 mt-2 ml-2">4</p>
-                        </div>
+                        </div> -->
                     </div>
                     @endforeach
                 </div>
                 @endforeach
 
+                <script>
+                    const botaoLike = document.getElementById('botaoLike');
+                    const botaoDislike = document.getElementById('botaoDislike');
 
-                    <!-- <div class="d-flex" >
-                        <img src="{{ asset('flecha_cima_vazia.svg') }}" alt="like">
-                        <p class="h3 mt-2 ml-2"></p>
-                        <img src="{{ asset('flecha_baixo_vazia.svg') }}" alt="dislike" class="ml-4">
-                        <p class="h3 mt-2 ml-2">1</p>
-                        <div class="d-flex img-fluid" style="margin-left: auto;">
-                            <img src="{{ asset('chat.svg') }}" alt="chat" class="ml-4">
-                            <p class="h3 mt-2 ml-2">4</p>
-                        </div> -->
-                    <!-- </div> -->
+                    botaoLike.addEventListener("click", function () {
+                        event.preventDefault()
+                        modalLogin.showModal()
+                    })
+
+                    botaoDislike.addEventListener("click", function () {
+                        event.preventDefault()
+                        modalLogin.showModal()
+                    })
+
+
+                </script>
+
             </div>
 
         <!-- COLUNA DIREITA -->

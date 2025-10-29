@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Descurtida extends Model
 {
     protected $table = 'descurtida';
-    protected $fillable = ['deslikes', 'user_id', 'publicacao_id'];
+    protected $fillable = ['dislikes', 'user_id', 'publicacao_id'];
     public $timestamps = false;
 
     public function user()
