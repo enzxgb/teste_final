@@ -4,6 +4,7 @@ const botaoCancelar = document.getElementById('botaoCancelar')
 
 
 botaoEntrar.addEventListener("click", function () {
+    event.preventDefault();
     modalLogin.showModal()
 })
 

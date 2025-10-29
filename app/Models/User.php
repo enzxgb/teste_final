@@ -61,4 +61,8 @@ class User extends Authenticatable
         return $this->hasMany(Descurtida::class);
     }
 
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class, 'user_id');
+    }
 }

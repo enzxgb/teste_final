@@ -40,5 +40,10 @@ class Publicacao extends Model
     {
         return $this->hasMany(Descurtida::class, 'publicacao_id');
     }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class, 'publicacao_id');
+    }
 }
 

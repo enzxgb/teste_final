@@ -22,6 +22,7 @@ class AvaliacaoController extends Controller
     $existingDislike = Descurtida::where('user_id', $user_id)
         ->where('publicacao_id', $publicacao_id)
         ->first();
+
     if ($existingLike) {
         $existingLike->delete();
     } else {
@@ -34,7 +35,7 @@ class AvaliacaoController extends Controller
         ]);
     }
 
-    return back();
+    return redirect()->back();
 }
 
 public function descurtida($publicacao_id)

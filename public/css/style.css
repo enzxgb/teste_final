@@ -1,6 +1,6 @@
 #botaoEntrar {
     padding: 10px 100px 10px 100px;
-    background-color: orange;
+    background-color: #D97014;
     color: white;
     border: none;
     border-radius: 20px;
@@ -8,7 +8,7 @@
 
 #botaoSair {
     padding: 10px 100px 10px 100px;
-    background-color: orange;
+    background-color: #D97014;
     color: white;
     border: none;
     border-radius: 20px;
@@ -16,7 +16,7 @@
 
 #botaoLogin {
     width: 48%;
-    background-color: orange;
+    background-color: #D97014;
     color: white;
     border: none;
     border-radius: 20px;
@@ -25,8 +25,8 @@
 #botaoCancelar {
     width: 48%;
     background-color: white;
-    color: orange;
-    border: 2px solid orange;
+    color: #D97014;
+    border: 2px solid #D97014;
     border-radius: 20px;
 }
 
@@ -38,11 +38,11 @@
     justify-content: space-between;
 }
 
-dialog::backdrop {
+#modalLogin::backdrop {
     background-color: rgb(0 0 0/ .6);
 }
 
-dialog {
+#modalLogin {
     margin-top: 2%;
     border: none;
     border-radius: .5rem;
@@ -55,7 +55,7 @@ dialog {
     height: 200px;
     object-fit: cover;
     object-position: center;
-    border: 5px solid orange;
+    border: 5px solid #D97014;
 }
 
 .hover:hover {
@@ -64,5 +64,16 @@ dialog {
   transition: all 0.3s ease;
 }
 
+.contagemLD {
+    color: #D97014;
+    -webkit-text-stroke: 1px black;
+    font-weight: bold;
+    font-size: 54px;
+}
+
+footer {
+    background-color: #D97014;
+    color: white;
+}
 
 

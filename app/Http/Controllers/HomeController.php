@@ -22,6 +22,7 @@ class HomeController extends Controller
         $avaliacoes = Avaliacao::where('user_id', Auth::id())->get();
         $likesTotais = Curtida::sum('likes');
         $dislikesTotais = Descurtida::sum('dislikes');
+
         return view('home', compact('empresa', 'publicacoes', 'avaliacoes', 'likesTotais', 'dislikesTotais' ));
     }
 

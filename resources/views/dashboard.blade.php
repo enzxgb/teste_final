@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-      <title>Sabor do Brasil</title>
-      <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
+@extends('layouts.app')
+@section('title', 'Sabor do Brasil')
+@section('content')
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -16,9 +10,15 @@
                 <img class="empresa_usuario rounded-circle img-fluid" src="{{ asset(Auth::user()->foto) }}" alt="{{ asset(Auth::user()->nickname) }}">
                 <p class="h2 mt-4 ">{{ Auth::user()->name }}</p>
                 <hr style="border-top: 3px solid #000; border-color: #D97014; width: 70%">
-                <div class="d-flex justify-content-center">
-                    <p class="h5 mr-5">29<br>Quantidade <br> Likes</p>
-                    <p class="h5 ml-5">12<br>Quantidade<br>Dislikes</p>
+                <div class="d-flex justify-content-center text-center">
+                    <div class="mx-5">
+                        <p class="h5 contagemLD">{{ $likesUsuario }}</p>
+                        <p class="h6">Quantidade <br> Likes</p>
+                    </div>
+                    <div class="mx-5">
+                        <p class="h5 contagemLD">{{ $dislikesUsuario }}</p>
+                        <p class="h6">Quantidade <br> Dislikes</p>
+                    </div>
                 </div>
             </div>
 
@@ -46,52 +46,57 @@
                                     <p class="h5 align-content-end">{{ $publicacao->cidade }}</p>
                                 </div>
 
-                                @foreach ($publicacao->avaliacoes as $avaliacao)
-                                    <div class="d-flex">
-                                        <!-- <form action="{{ route('like') }}" method="POST" class="d-inline">
-                                            @csrf
-                                            <input type="hidden" name="publicacao_id" value="{{ $avaliacao->publicacao_id }}">
-                                            <button type="submit" class="btn border-0 bg-transparent botaoLike" data-publicacao="{{ $publicacao->id }}">
-                                                <img class="iconeLike" src="{{ asset('flecha_cima_vazia.svg') }}" alt="like" data-publicacao="{{ $publicacao->id }}">
-                                            </button>
-                                        </form>
-                                       <p class="h3 mt-1 ml-1"> {{ $avaliacao->like }} </p>
+                                    @php
+                                        $liked = $publicacao->curtidas->where('user_id', auth()->id())->count() > 0;
+                                        $disliked = $publicacao->descurtidas->where('user_id', auth()->id())->count() > 0;
+                                    @endphp
 
-                                        <form action="{{ route('dislike') }}" method="POST" class="d-inline">
-                                            @csrf
-                                            <input type="hidden" name="publicacao_id" value="{{ $avaliacao->publicacao_id }}">
-                                            <button type="submit" class="btn border-0 bg-transparent botaoDislike" data-publicacao="{{ $publicacao->id }}">
-                                                <img class="iconeDislike" src="{{ asset('flecha_baixo_vazia.svg') }}" alt="dislike" data-publicacao="{{ $publicacao->id }}">
-                                            </button>
-                                        </form>
-                                        <p class="h3 mt-1 ml-1 dislikes-count" data-publicacao="{{ $publicacao->id }}">{{ $avaliacao->dislike }}</p> -->
-                                            @php
-                                                $liked = $publicacao->curtidas->where('user_id', auth()->id())->count() > 0;
-                                                $disliked = $publicacao->descurtidas->where('user_id', auth()->id())->count() > 0;
-                                            @endphp
+                                    <div class="d-flex">
 
                                             <form action="{{ route('publicacao.curtida', $publicacao->id) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn border-0 bg-transparent botaoLike">
-                                                    <img src="{{ asset($liked ? '/flecha_cima_cheia.svg' : '/flecha_cima_vazia.svg') }}" alt="Like">
+                                                <button type="submit" class="btn border-0 bg-transparent botaoLike" data-publicacao="{{ $publicacao->id }}">
+                                                    <img class="iconeLike" src="{{ asset($liked ? '/flecha_cima_cheia.svg' : '/flecha_cima_vazia.svg') }}" alt="Like">
                                                     {{ $publicacao->curtidas->count() }}
                                                 </button>
                                             </form>
 
                                             <form action="{{ route('publicacao.descurtida', $publicacao->id) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn border-0 bg-transparent botaoDislike">
-                                                    <img src="{{ asset($disliked ? '/flecha_baixo_cheia.svg' : '/flecha_baixo_vazia.svg') }}" alt="Dislike">
+                                                <button type="submit" class="btn border-0 bg-transparent botaoDislike" data-publicacao="{{ $publicacao->id }}">
+                                                    <img class="iconeDislike" src="{{ asset($disliked ? '/flecha_baixo_cheia.svg' : '/flecha_baixo_vazia.svg') }}" alt="Dislike">
                                                     {{ $publicacao->descurtidas->count() }}
                                                 </button>
                                             </form>
 
+                                            <form action="" method="post" style="margin-left: auto;">
+                                            @csrf
+                                                <button type="submit" class="btn border-0 bg-transparent botaoChat" data-publicacao="{{ $publicacao->id }}">
+                                                    <img src="{{ asset('chat.svg') }}" alt="chat" class="mr-3">
+                                                </button>
+
+                                                <dialog id="modalChat">
+                                                    <input type="text" name="comentario" id="comentario" placeholder="Insira seu comentário" class="form form-control">                                        
+                                                </dialog>
+
+                                            </form>
                                     </div>
-                                @endforeach
                             </div>
                         @endforeach
 
                         <script>
+                        
+                        const botaoChat = document.querySelector('.botaoChat') 
+                        const modalComents = document.querySelector('.modelComents')
+
+                        botaoChat.forEach(coments => {
+                            coments.addEventListener("click", function() {
+                                event.preventDefault();
+                                modalComents.showModal();
+                            });
+                        });
+                        
+
                         document.addEventListener('DOMContentLoaded', function() {
                             function carregarEstado(publicacaoId) {
                                 return localStorage.getItem(`estado_${publicacaoId}`) || null;
@@ -182,3 +187,4 @@
     </div>
 </body>
 </html>
+@endsection

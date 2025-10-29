@@ -3,27 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Empresa;
-use App\Models\Publicacao;
-use App\Models\Avaliacao;
-use App\Models\Curtida;
-use App\Models\Descurtida;
-use Illuminate\Support\Facades\Auth;
 
-class DashboardController extends Controller
+class ComentarioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $empresa = Empresa::find(1);
-        $publicacoes = Publicacao::with('avaliacoes')->get();
-        $avaliacoes = Avaliacao::where('user_id', Auth::id())->get();
-        $likesUsuario = Curtida::where('user_id', Auth::id())->sum('likes');
-        $dislikesUsuario = Descurtida::where('user_id', Auth::id())->sum('dislikes');
-
-        return view('dashboard', compact('empresa', 'publicacoes', 'avaliacoes', 'likesUsuario', 'dislikesUsuario'));
+        
     }
 
     /**
